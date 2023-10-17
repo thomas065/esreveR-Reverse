@@ -75,7 +75,14 @@
                         </li>
                         <li class="nav-item">
                             <!-- CHANGE ME TO THE REAL REPO LINK -->
-                            <a class="nav-link" href="https://github.com/thomas065/esreveR-Reverse" target="_blank" rel="noopener"> The Repo </a>
+                            <a
+                                class="nav-link"
+                                href="https://github.com/thomas065/esreveR-Reverse"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                The Repo
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a
@@ -100,35 +107,81 @@
         <main class="container py-3">
             <h1 class="border-bottom border-2 border-dark">The Code</h1>
             <div class="row">
-                <div class="col-12 col-lg-8">
+                <div
+                    class="col-12 col-lg-8 synapse overflow-x-hidden overflow-y-scroll"
+                >
                     <pre class="line-numbers">
                         <code class="language-js">
-    function displayMessage() {
-        // get the text out of our input and assign it to a variable
-        let msg = document.getElementById('message').value;
+                            // get the user's message to reverse
+                            function getValues() {
 
-        // alert('Hello Guardian Cohort!')
-        Swal.fire(
-            {
-                icon: 'success',
-                backdrop: false,
-                title: '<strong>esreveR-Reverse</strong>',
-                text: msg, // <---- replace this text with that variable
-                showConfirmButton: false,
-                timer: 1500,
-                timerProgressBar: true,
-            }
-        );
-    }
+                                // get the text input from the page
+                                let message = document.getElementById('userInput').value;
+
+                                // validate the input: make sure the input is not empty
+                                if (message.length == 0) {
+                                    Swal.fire ({
+                                        icon: 'error',
+                                        backdrop: false,
+                                        title: 'Oops!',
+                                        text: 'Please enter a message to reverse'
+                                    });
+                                } else {
+                                    // pass the input to reverseMessage() and assign its return value to a variable
+                                    let revMsg = reverseMessage(message);
+
+                                    // give the reverse message to displayessage()
+                                    displayMessage(revMsg);
+                                }
+                            }
+
+                            // reverse the message
+                            function reverseMessage(input) { // if input = hello
+
+                                let output = ''; // output = ['h', 'e', 'l', 'l', 'o']
+
+                                for (let i = input.length-1; i >= 0; i--) {
+
+                                    output += input[i]
+                                }
+
+                                // turns ['o','l','l','e','h'] into ['olleh']
+                                return output;
+                            }
+
+                            // display the reverse message
+                            function displayMessage(message) {
+
+                                document.getElementById('msg').textContent = `Your message reversed is: ${message}`;
+
+                                document.getElementById('alert').classList.remove('invisible');
+                            }
                         </code>
                 </pre>
                 </div>
                 <div class="col-12 col-lg-4">
                     <!-- Explain your code here -->
-                    <p>The code is structured in one function:</p>
                     <p>
-                        <code>displayMessage()</code> displays a SweetAlert when
-                        the button is presse.
+                        Have you ever wondered how to reverse a message you've
+                        entered?
+                    </p>
+                    <p>
+                        <code>getValues()</code> in this JavaScript code is used
+                        to retrieve the user's input from a webpage, and also
+                        make sure the input is not empty. I use a loop to go
+                        through each character of the input message and build a
+                        reversed message. For example, if the input is "hello,"
+                        our code will turn it into "olleh." Pretty cool, right?
+                    </p>
+                    <p>
+                        I use JavaScript to update an element on the webpage
+                        with the reversed message and make another element
+                        visible. This way, the user can see the result. And
+                        that's it!
+                    </p>
+                    <p>
+                        You've just learned how to create a simple web page that
+                        takes a message, reverses it, and displays the result.
                     </p>
                 </div>
             </div>
